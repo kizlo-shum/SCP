@@ -1,0 +1,2 @@
+# RegistrationPage
+Page for registrations
