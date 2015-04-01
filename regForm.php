@@ -11,17 +11,17 @@
 
     if (!empty($_POST)) {
         //echo '<pre>'; var_dump($_FILES); echo '</pre>';
-        //echo '<pre>'; var_dump('qqq'); echo '</pre>';
         $firstName = $_POST['firstName'];
         $secondName = $_POST['secondName'];
         $email = $_POST['email'];
         $avatarName = $_FILES['inputAvatar']['name'];
+        $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/'.$avatarName);
 
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
 
         //$conn = mysqli_connect('localhost', 'root', '6710omne8864');
-        $db = new PDO('mysql:host=localhost;dbname=registration;charset=UTF8', 'root', '6710omne8864');
+        $db = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
 
         //mysqli_query($conn, "SET NAMES 'utf8';");
         $db->query("SET NAMES 'utf8';");
@@ -36,7 +36,6 @@
             ':avatar' => $avatarName,
             ':md5p' => md5($password1)
         ]);
-
         //mysqli_query($conn, $sql);
         //mysqli_close($conn);
     }
@@ -64,19 +63,25 @@
 
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" placeholder="Enter your first name" id="firstName"
-                           name="firstName" autocomplete="off">
+                           name="firstName" autocomplete="off" value="<?php if (isset($firstName)) {
+                        print("$firstName");
+                    } ?>">
                 </div>
                 <div class="form-group">
 
                     <label for="secondName">First Name</label>
                     <input type="text" class="form-control" placeholder="Enter your second name" id="secondName"
-                           name="secondName" autocomplete="off">
+                           name="secondName" autocomplete="off" value="<?php if (isset($secondName)) {
+                        print("$secondName");
+                    } ?>">
                 </div>
                 <div class="form-group">
 
                     <label for="email">E-mail</label>
                     <input type="email" class="form-control" placeholder="Enter your e-mail" id="email" name="email"
-                           autocomplete="off">
+                           autocomplete="off" value="<?php if (isset($email)) {
+                        print("$email");
+                    } ?>">
                 </div>
                 <div class="form-group">
                     <label for="inputAvatar">Avatar</label>
@@ -85,12 +90,16 @@
                 <div class="form-group">
                     <label for="password1">Password</label>
                     <input type="password" class="form-control" placeholder="Choose password" id="password1"
-                           name="password1">
+                           name="password1" value="<?php if (isset($password1)) {
+                        print("$password1");
+                    } ?>">
                 </div>
                 <div class="form-group">
                     <label for="password2">Password verification</label>
                     <input type="password" class="form-control" placeholder="Re-enter password" id="password2"
-                           name="password2">
+                           name="password2" value="<?php if (isset($password2)) {
+                        print("$password2");
+                    } ?>">
                 </div>
 
                 <input type="submit" class="btn btn-default pull-right" value="Sign up" id="submitLogin"
