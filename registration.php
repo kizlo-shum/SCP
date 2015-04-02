@@ -14,10 +14,8 @@
         $firstName = $_POST['firstName'];
         $secondName = $_POST['secondName'];
         $email = $_POST['email'];
-
         $avatarName = $_FILES['inputAvatar']['name'];
         $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
-
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
 
@@ -28,6 +26,28 @@
         } else if ($avatarName == '') {
             $text = '<p class="text-danger">Please choose avatar.</p>';
         } else {
+            session_start();
+            $firstName = $_POST['firstName'];
+            $secondName = $_POST['secondName'];
+            $email = $_POST['email'];
+            $avatarName = $_FILES['inputAvatar']['name'];
+            $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
+            $password1 = $_POST['password1'];
+            $password2 = $_POST['password2'];
+
+            $db = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
+            $db->query("SET NAMES 'utf8';");
+            $sql = "INSERT INTO registration.users(firstName, secondName, email, avatar, passwordHash)
+                    VALUES(:firstName, :secondName, :email, :avatar, :md5p)";
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':firstName' => $firstName,
+                ':secondName' => $secondName,
+                ':email' => $email,
+                ':avatar' => $avatarName,
+                ':md5p' => md5($password1)
+            ]);
+            $_SESSION["userId"] = $db->lastInsertId();
             header( 'Location: /success.php', true, 303 );
         }
     }
@@ -51,7 +71,7 @@
                 <h1>Registration form</h1>
                 <?php print("$text"); ?>
             </div>
-            <form name="loginForm" enctype="multipart/form-data" method="POST" action="success.php">
+            <form name="loginForm" enctype="multipart/form-data" method="POST" action="registration.php">
 
                 <div class="form-group">
 
