@@ -48,7 +48,8 @@
                 ':md5p' => md5($password1)
             ]);
             $_SESSION["userId"] = $db->lastInsertId();
-            header( 'Location: /success.php', true, 303 );
+            header('Location: /success.php', true, 303);
+            exit;
         }
     }
     ?>

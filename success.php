@@ -12,18 +12,17 @@
     if (isset($_SESSION['userId'])) {
         $userId = $_SESSION['userId'];
         $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-        $sth = $dbh->prepare("SELECT firstName, secondName, email, avatar FROM users where id = $userId");
-        $sth->execute();
-        $result = $sth->fetchAll();
+        $sth = $dbh->prepare("SELECT firstName, secondName, email, avatar FROM users where id = :userId");
+        $sth->execute([':userId' => $userId]);
+        $result = $sth->fetch(PDO::FETCH_ASSOC);
+    } else {
+        header('Location: /registration.php', true, 303);
+        exit;
     }
     ?>
 
 </head>
-
 <body>
-
-
-
 <div class="container-fluid">
     <div class="row">
         <p align="center" class="text-center">
@@ -33,20 +32,16 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <?php
-            print "<p align=right>";
-            print '<img width="200" src="/avatars/'.$result[0][3].'" >';
-            print "</p>";
-            ?>
+            <p align=right>
+                <img width="200" src="/avatars/<?= $result["avatar"] ?>">
+            </p>
         </div>
         <div class="col-md-4">
-            <?php
-                print "<p>";
-                print "First name: ".$result[0][0]."<br />";
-                print "Second name: ".$result[0][1]."<br />";
-                print "email: ".$result[0][2]."<br />";
-                print "</p>";
-             ?>
+            <p>
+                <b>First name:</b> <?= $result["firstName"] ?>;<br/>
+                <b>Second name:</b> <?= $result["secondName"] ?>;<br/>
+                <b>email:</b> <?= $result["email"] ?>;<br/>
+            </p>
         </div>
         <div class="col-md-4"></div>
     </div>
