@@ -27,13 +27,6 @@
             $text = '<p class="text-danger">Please choose avatar.</p>';
         } else {
             session_start();
-            $firstName = $_POST['firstName'];
-            $secondName = $_POST['secondName'];
-            $email = $_POST['email'];
-            $avatarName = $_FILES['inputAvatar']['name'];
-            $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
-            $password1 = $_POST['password1'];
-            $password2 = $_POST['password2'];
 
             $db = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
             $db->query("SET NAMES 'utf8';");

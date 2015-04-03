@@ -38,9 +38,9 @@
         </div>
         <div class="col-md-4">
             <p>
-                <b>First name:</b> <?= $result["firstName"] ?>;<br/>
-                <b>Second name:</b> <?= $result["secondName"] ?>;<br/>
-                <b>email:</b> <?= $result["email"] ?>;<br/>
+                <b>First name:</b> <?= $result["firstName"] ?><br/>
+                <b>Second name:</b> <?= $result["secondName"] ?><br/>
+                <b>E-mail:</b> <?= $result["email"] ?><br/>
             </p>
         </div>
         <div class="col-md-4"></div>
