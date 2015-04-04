@@ -1,0 +1,12 @@
+Done:
+1. Reading and writing to DB
+2. File uploading
+3. Checking of required fields (server side)
+4. SQL-injection protection
+5. Only hash of passwords is saved
+
+To do:
+1. Random avatar name
+2. Password security (At least one uppercase letter, lowercase letter and a number.)
+3. Image crop
+4. XSS protection
