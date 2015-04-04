@@ -16,7 +16,7 @@
         $sth->execute([':userId' => $userId]);
         $result = $sth->fetch(PDO::FETCH_ASSOC);
     } else {
-        header('Location: /registration.php', true, 303);
+        header('Location: /login.php', true, 303);
         exit;
     }
     ?>
@@ -26,7 +26,7 @@
 <div class="container-fluid">
     <div class="row">
         <p align="center" class="text-center">
-            <a href="/registration.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
+            <a href="/login.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
                                              height="200"></a>
         </p><br/>
     </div>

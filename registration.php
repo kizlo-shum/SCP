@@ -51,7 +51,7 @@
 <div class="container-fluid">
     <div class="row">
         <p align="center" class="text-center">
-            <a href="/registration.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
+            <a href="/login.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
                                              height="200"></a>
         </p>
     </div>
