@@ -10,15 +10,12 @@
     <?php
     $text = ' <p class="text">Please fill the registration form.</p>';
     if (!empty($_POST)) {
-
         $firstName = $_POST['firstName'];
         $secondName = $_POST['secondName'];
         $email = $_POST['email'];
         $avatarName = $_FILES['inputAvatar']['name'];
-        $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
-
         if ($password1 != $password2) {
             $text = '<p class="text-danger">Passwords doesn\'t match.</p>';
         } else if ($firstName == '' or $secondName == '' or $email == '') {
@@ -27,11 +24,11 @@
             $text = '<p class="text-danger">Please choose avatar.</p>';
         } else {
             session_start();
-
+            $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
             $db = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
             $db->query("SET NAMES 'utf8';");
             $sql = "INSERT INTO registration.users(firstName, secondName, email, avatar, passwordHash)
-                    VALUES(:firstName, :secondName, :email, :avatar, :md5p)";
+                            VALUES(:firstName, :secondName, :email, :avatar, :md5p)";
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':firstName' => $firstName,
@@ -56,7 +53,7 @@
         <p align="center" class="text-center">
             <a href="/registration.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
                                              height="200"></a>
-        </p><br/>
+        </p>
     </div>
     <div class="row">
         <div class="col-md-4"></div>
@@ -105,10 +102,11 @@
                     <input type="password" class="form-control" placeholder="Re-enter password" id="password2"
                            name="password2">
                 </div>
-
-                <input type="submit" class="btn btn-default pull-right" value="Sign up" id="submitLogin"
-                       name="submitLogin">
-
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default pull-right" id="submitLogin"
+                            name="submitLogin">Sign up
+                    </button>
+                </div>
             </form>
         </div>
         <div class="col-md-4"></div>
