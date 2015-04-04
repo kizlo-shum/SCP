@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
     <title>Registration form</title>
 
     <?php
-    $text = ' <p class="text">Please fill the registration form.</p>';
+    $text = "";
     if (!empty($_POST)) {
         $firstName = $_POST['firstName'];
         $secondName = $_POST['secondName'];
@@ -52,7 +52,7 @@
     <div class="row">
         <p align="center" class="text-center">
             <a href="/login.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
-                                             height="200"></a>
+                                      height="200"></a>
         </p>
     </div>
     <div class="row">
@@ -60,7 +60,11 @@
         <div class="col-md-4">
             <div class="centered-text">
                 <h1>Registration form</h1>
-                <?php print("$text"); ?>
+                <?PHP if ($text != "") {
+                    print '<div class="alert alert-danger" role="alert">';
+                    print $text;
+                    print '</div>';
+                }?>
             </div>
             <form name="loginForm" enctype="multipart/form-data" method="POST" action="registration.php">
 

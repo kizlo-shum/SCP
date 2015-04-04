@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,7 @@
     <div class="row">
         <p align="center" class="text-center">
             <a href="/login.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
-                                             height="200"></a>
+                                      height="200"></a>
         </p><br/>
     </div>
     <div class="row">
@@ -41,6 +41,7 @@
                 <b>First name:</b> <?= $result["firstName"] ?><br/>
                 <b>Second name:</b> <?= $result["secondName"] ?><br/>
                 <b>E-mail:</b> <?= $result["email"] ?><br/>
+                <a href="/logout.php">Log out</a>
             </p>
         </div>
         <div class="col-md-4"></div>

@@ -1,3 +1,0 @@
-drwxr-xr-x  5 yaroslav yaroslav 4096 бер 31 18:52 /www
-drwxrwxrwt  2 www-data www-data 4096 кві  3 10:42 /tmp
-drwxrwxr-x  7 yaroslav yaroslav 4096 кві  3 10:43 /www/myproject
