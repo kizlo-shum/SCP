@@ -20,7 +20,7 @@
         $_SESSION["userId"] = $result["id"];
         if ($result) {
             if ($result["passwordHash"] === $passwordHash) {
-                header('Location: /success.php', true, 303);
+                header('Location: /profile.php', true, 303);
                 exit;
             } else {
                 $text = "Pair login/password does not exist";
