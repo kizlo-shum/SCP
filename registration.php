@@ -9,36 +9,34 @@
 
     <?php
     $text = "";
-    function RandomAvatarName()
+    function RandomAvatarName($length = 10)
     {
         $characters = '0123456789';
         $randavatar = '';
-        for ($i = 0; $i < 10; $i++) {
-            $randavatar .= $characters[rand(0, strlen($characters))];
+        for ($i = 0; $i < $length; $i++) {
+            $randavatar .= $characters[rand(0, strlen($characters) - 1)];
         }
         return $randavatar;
     }
 
     if (!empty($_POST)) {
-        $firstName = $_POST['firstName'];
-        $secondName = $_POST['secondName'];
-        $email = $_POST['email'];
-
-
-        $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
-        $avatarName = RandomAvatarName() . "." . $ext;
-
+        $firstName = strip_tags($_POST['firstName']);
+        $secondName = strip_tags($_POST['secondName']);
+        $email = strip_tags($_POST['email']);
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
+        $avatarName = $_FILES['inputAvatar']['name'];
+
         if ($password1 != $password2) {
             $text = '<p class="text-danger">Passwords doesn\'t match.</p>';
-        } else if (1) {
         } else if ($firstName == '' or $secondName == '' or $email == '') {
             $text = '<p class="text-danger">All fields are required.</p>';
         } else if ($avatarName == '') {
             $text = '<p class="text-danger">Please choose avatar.</p>';
         } else {
             session_start();
+            $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
+            $avatarName = RandomAvatarName() . "." . $ext;
             $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
             $db = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
             $db->query("SET NAMES 'utf8';");
