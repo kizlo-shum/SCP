@@ -9,15 +9,30 @@
 
     <?php
     $text = "";
+    function RandomAvatarName()
+    {
+        $characters = '0123456789';
+        $randavatar = '';
+        for ($i = 0; $i < 10; $i++) {
+            $randavatar .= $characters[rand(0, strlen($characters))];
+        }
+        return $randavatar;
+    }
+
     if (!empty($_POST)) {
         $firstName = $_POST['firstName'];
         $secondName = $_POST['secondName'];
         $email = $_POST['email'];
-        $avatarName = $_FILES['inputAvatar']['name'];
+
+
+        $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
+        $avatarName = RandomAvatarName() . "." . $ext;
+
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
         if ($password1 != $password2) {
             $text = '<p class="text-danger">Passwords doesn\'t match.</p>';
+        } else if (1) {
         } else if ($firstName == '' or $secondName == '' or $email == '') {
             $text = '<p class="text-danger">All fields are required.</p>';
         } else if ($avatarName == '') {
