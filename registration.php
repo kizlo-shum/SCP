@@ -9,15 +9,6 @@
 
     <?php
     $text = "";
-    function RandomAvatarName($length = 10)
-    {
-        $characters = '0123456789';
-        $randavatar = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randavatar .= $characters[rand(0, strlen($characters) - 1)];
-        }
-        return $randavatar;
-    }
 
     if (!empty($_POST)) {
         $firstName = strip_tags($_POST['firstName']);
@@ -36,7 +27,7 @@
         } else {
             session_start();
             $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
-            $avatarName = RandomAvatarName() . "." . $ext;
+            $avatarName = md5(uniqid($_FILES["myfile"]["name"], true)) . "." . $ext;
             $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
             $db = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
             $db->query("SET NAMES 'utf8';");
