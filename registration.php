@@ -20,6 +20,12 @@
 
         if ($password1 != $password2) {
             $text = '<p class="text-danger">Passwords doesn\'t match.</p>';
+        } else if (strlen($password1) < 8) {
+            $text = '<p class="text-danger">The password is too short.</p>';
+        } else if (!preg_match("#[0-9]+#", $password1)) {
+            $text = '<p class="text-danger">Password must include at least one number!</p>';
+        } else if (!preg_match("#[a-zA-Z]+#", $password1)) {
+            $text = '<p class="text-danger">Password must include at least one letter!</p>';
         } else if ($firstName == '' or $secondName == '' or $email == '') {
             $text = '<p class="text-danger">All fields are required.</p>';
         } else if ($avatarName == '') {
@@ -98,7 +104,10 @@
                 </div>
                 <div class="form-group">
                     <label for="inputAvatar">Avatar</label>
-                    <input type="file" accept="image/jpeg,image/png" name="inputAvatar" id="inputAvatar">
+                    <input type="file" accept="image/jpeg,image/png" name="inputAvatar" id="inputAvatar"
+                           value="<?php if (isset($avatarName)) {
+                               print("$avatarName");
+                           } ?>">
                 </div>
                 <div class="form-group">
                     <label for="password1">Password</label>
