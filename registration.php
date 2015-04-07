@@ -33,13 +33,13 @@
         } else {
             session_start();
             $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
-            $avatarName = md5(uniqid($_FILES["myfile"]["name"], true)) . "." . $ext;
+            $avatarName = md5(uniqid($_FILES["inputAvatar"]["name"], true)) . "." . $ext;
             $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
-            $db = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-            $db->query("SET NAMES 'utf8';");
+            $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
+            $dbh->query("SET NAMES 'utf8';");
             $sql = "INSERT INTO registration.users(firstName, secondName, email, avatar, passwordHash)
                             VALUES(:firstName, :secondName, :email, :avatar, :md5p)";
-            $sth = $db->prepare($sql);
+            $sth = $dbh->prepare($sql);
             $sth->execute([
                 ':firstName' => $firstName,
                 ':secondName' => $secondName,
@@ -47,7 +47,7 @@
                 ':avatar' => $avatarName,
                 ':md5p' => md5($password1)
             ]);
-            $_SESSION["userId"] = $db->lastInsertId();
+            $_SESSION["userId"] = $dbh->lastInsertId();
             header('Location: /profile.php', true, 303);
             exit;
         }
@@ -60,16 +60,18 @@
 
 <div class="container-fluid">
     <div class="row">
-        <p align="center" class="text-center">
-            <a href="/login.php"><img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
-                                      height="200"></a>
-        </p>
+        <div class="col-md-12" align="center">
+            <img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
+                 height="200">
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="centered-text">
-                <h1>Registration form</h1>
+                <h3>Registration form<br/>
+                    <small>Already have an account? Please <a href="/login.php">login.</a></small>
+                </h3>
                 <?PHP if ($text != "") {
                     print '<div class="alert alert-danger" role="alert">';
                     print $text;

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.css" rel="stylesheet">
-    <title>Registration form</title>
+    <title>Login form</title>
 
     <?php
     session_start();
@@ -14,7 +14,7 @@
         $email = $_POST['email'];
         $passwordHash = md5($_POST['password']);
         $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-        $sth = $dbh->prepare("SELECT id, passwordHash FROM users where email = :email");
+        $sth = $dbh->prepare("SELECT id, passwordHash FROM users WHERE email = :email");
         $sth->execute([':email' => $email]);
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         $_SESSION["userId"] = $result["id"];
@@ -39,15 +39,17 @@
 
 <div class="container-fluid">
     <div class="row">
-        <p align="center" class="text-center">
+        <div class="col-md-12" align="center">
             <img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек" height="200">
-        </p>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="centered-text">
-                <h3>Please login or <a href="/registration.php">create</a> new account</h3>
+                <h3>Login form<br/>
+                    <small>Don't have an account yet? Please <a href="/registration.php">create</a> one.</small>
+                </h3>
                 <?PHP if ($text != "") {
                     print '<div class="alert alert-danger" role="alert">';
                     print $text;
