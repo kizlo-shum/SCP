@@ -1,58 +1,51 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <title>Registration form</title>
+<?php
+$title="Registration";
+include "header.php";
+$text = "";
 
-    <?php
-    $text = "";
+if (!empty($_POST)) {
+    $firstName = strip_tags($_POST['firstName']);
+    $secondName = strip_tags($_POST['secondName']);
+    $email = strip_tags($_POST['email']);
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
+    $avatarName = $_FILES['inputAvatar']['name'];
 
-    if (!empty($_POST)) {
-        $firstName = strip_tags($_POST['firstName']);
-        $secondName = strip_tags($_POST['secondName']);
-        $email = strip_tags($_POST['email']);
-        $password1 = $_POST['password1'];
-        $password2 = $_POST['password2'];
-        $avatarName = $_FILES['inputAvatar']['name'];
-
-        if ($password1 != $password2) {
-            $text = '<p class="text-danger">Passwords doesn\'t match.</p>';
-        } else if (strlen($password1) < 8) {
-            $text = '<p class="text-danger">The password is too short.</p>';
-        } else if (!preg_match("#[0-9]+#", $password1)) {
-            $text = '<p class="text-danger">Password must include at least one number!</p>';
-        } else if (!preg_match("#[a-zA-Z]+#", $password1)) {
-            $text = '<p class="text-danger">Password must include at least one letter!</p>';
-        } else if ($firstName == '' or $secondName == '' or $email == '') {
-            $text = '<p class="text-danger">All fields are required.</p>';
-        } else if ($avatarName == '') {
-            $text = '<p class="text-danger">Please choose avatar.</p>';
-        } else {
-            session_start();
-            $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
-            $avatarName = md5(uniqid($_FILES["inputAvatar"]["name"], true)) . "." . $ext;
-            $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
-            $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-            $dbh->query("SET NAMES 'utf8';");
-            $sql = "INSERT INTO registration.user(varFirstName, varSurname, varEmail, varAvatar, varPasswordHash)
+    if ($password1 != $password2) {
+        $text = '<p class="text-danger">Passwords doesn\'t match.</p>';
+    } else if (strlen($password1) < 8) {
+        $text = '<p class="text-danger">The password is too short.</p>';
+    } else if (!preg_match("#[0-9]+#", $password1)) {
+        $text = '<p class="text-danger">Password must include at least one number!</p>';
+    } else if (!preg_match("#[a-zA-Z]+#", $password1)) {
+        $text = '<p class="text-danger">Password must include at least one letter!</p>';
+    } else if ($firstName == '' or $secondName == '' or $email == '') {
+        $text = '<p class="text-danger">All fields are required.</p>';
+    } else if ($avatarName == '') {
+        $text = '<p class="text-danger">Please choose avatar.</p>';
+    } else {
+        session_start();
+        $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
+        $avatarName = md5(uniqid($_FILES["inputAvatar"]["name"], true)) . "." . $ext;
+        $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
+        $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
+        $dbh->query("SET NAMES 'utf8';");
+        $sql = "INSERT INTO registration.user(varFirstName, varSurname, varEmail, varAvatar, varPasswordHash)
                             VALUES(:firstName, :secondName, :email, :avatar, :md5p)";
-            $sth = $dbh->prepare($sql);
-            $sth->execute([
-                ':firstName' => $firstName,
-                ':secondName' => $secondName,
-                ':email' => $email,
-                ':avatar' => $avatarName,
-                ':md5p' => md5($password1)
-            ]);
-            $_SESSION["userId"] = $dbh->lastInsertId();
-            header('Location: /profile.php', true, 303);
-            exit;
-        }
+        $sth = $dbh->prepare($sql);
+        $sth->execute([
+            ':firstName' => $firstName,
+            ':secondName' => $secondName,
+            ':email' => $email,
+            ':avatar' => $avatarName,
+            ':md5p' => md5($password1)
+        ]);
+        $_SESSION["userId"] = $dbh->lastInsertId();
+        header('Location: /profile.php', true, 303);
+        exit;
     }
-    ?>
+}
+?>
 
 </head>
 
