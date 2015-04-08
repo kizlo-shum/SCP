@@ -1,5 +1,5 @@
 <?php
-$title="Profile";
+$title = "Profile";
 include "header.php";
 
 
@@ -37,30 +37,23 @@ if (isset($_SESSION['userId'])) {
                 <b>First name:</b> <?= $user["varFirstName"] ?><br/>
                 <b>Second name:</b> <?= $user["varSurname"] ?><br/>
                 <b>E-mail:</b> <?= $user["varEmail"] ?><br/>
-
                 <?php
                 if ($user["isTeacher"] != 1) {
-
-                    print '<table class="table table-striped">';
-                    print '<tr><th>Number</th><th>Link</th><th>Mark</th></tr>';
-                   /* for ($i = 0; $i < count($info); $i++) {
-                        print "<tr><td>";
-                        print "Homework " . ($i + 1) . ":";
-                        print "</td><td>";
-                        print '<a href="/homework/' . $info[$i]["varFileName"] . '">';
-                        print $info[$i]["varFileName"];
-                        print "</a>";
-                        print "</td><td>";
-                        print $info[$i]["intMark"];
-                        print "</td></tr>";
-                    }*/
-                    $i=0;
-                    foreach($homeworks as $homework) {
-                        $i++;
-                        print $homework["varFileName"] . $i . "<br />";
+                    $i = 0;
+                    if (!empty($homeworks)) {
+                        echo '<table class="table table-striped">';
+                        echo '<tr><th>Number</th><th>Link</th><th>Mark</th></tr>';
+                        foreach ($homeworks as $homework) {
+                            $i++;
+                            print "<tr><td>" . "Homework " . $i . "</td>";
+                            print "<td>" . '<a href="homeworks/' . $homework["varFileName"] . '">';
+                            print $homework["varFileName"] . "</a>" . "</td><td>" . $homework["intMark"];
+                        }
                     }
                 }
                 ?>
+                </td></tr>
+
                 </table>
                 <a href="/logout.php">Log out</a>
             </p>
