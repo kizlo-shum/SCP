@@ -37,7 +37,7 @@
             $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
             $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
             $dbh->query("SET NAMES 'utf8';");
-            $sql = "INSERT INTO registration.users(firstName, secondName, email, avatar, passwordHash)
+            $sql = "INSERT INTO registration.user(varFirstName, varSurname, varEmail, varAvatar, varPasswordHash)
                             VALUES(:firstName, :secondName, :email, :avatar, :md5p)";
             $sth = $dbh->prepare($sql);
             $sth->execute([

@@ -12,7 +12,7 @@
     if (isset($_SESSION['userId'])) {
         $userId = $_SESSION['userId'];
         $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-        $sth = $dbh->prepare("SELECT isTeacher, firstName, secondName, email, avatar FROM users WHERE users.id = :userId");
+        $sth = $dbh->prepare("SELECT isTeacher, varFirstName, varSurname, varEmail, varAvatar FROM user WHERE user.intId = :userId");
         $sth->execute([':userId' => $userId]);
         $user = $sth->fetch();
     } else {
@@ -33,14 +33,14 @@
     <div class="row">
         <div class="col-md-4">
             <p align=right>
-                <img width="200" src="/avatars/<?= $user["avatar"] ?>">
+                <img width="200" src="/avatars/<?= $user["varAvatar"] ?>">
             </p>
         </div>
         <div class="col-md-4">
             <p>
-                <b>First name:</b> <?= $user["firstName"] ?><br/>
-                <b>Second name:</b> <?= $user["secondName"] ?><br/>
-                <b>E-mail:</b> <?= $user["email"] ?><br/>
+                <b>First name:</b> <?= $user["varFirstName"] ?><br/>
+                <b>Second name:</b> <?= $user["varSurname"] ?><br/>
+                <b>E-mail:</b> <?= $user["varEmail"] ?><br/>
                 <a href="/logout.php">Log out</a>
             </p>
         </div>

@@ -14,12 +14,12 @@
         $email = $_POST['email'];
         $passwordHash = md5($_POST['password']);
         $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-        $sth = $dbh->prepare("SELECT id, passwordHash FROM users WHERE email = :email");
+        $sth = $dbh->prepare("SELECT intId, varPasswordHash FROM user WHERE varEmail = :email");
         $sth->execute([':email' => $email]);
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        $_SESSION["userId"] = $result["id"];
+        $_SESSION["userId"] = $result["intId"];
         if ($result) {
-            if ($result["passwordHash"] === $passwordHash) {
+            if ($result["varPasswordHash"] === $passwordHash) {
                 header('Location: /profile.php', true, 303);
                 exit;
             } else {
