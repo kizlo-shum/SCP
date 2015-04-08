@@ -2,7 +2,6 @@
 $title = "Profile";
 include "header.php";
 
-
 session_start();
 if (isset($_SESSION['userId'])) {
     $info = array();
@@ -20,14 +19,7 @@ if (isset($_SESSION['userId'])) {
     exit;
 }
 ?>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12" align="center">
-            <img src="img/logo.png" alt="Логотип Миритек" title="Логотип Миритек"
-                 height="200">
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-md-4" align=right>
             <img width="200" src="/avatars/<?= $user["varAvatar"] ?>">

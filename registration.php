@@ -46,18 +46,6 @@ if (!empty($_POST)) {
     }
 }
 ?>
-
-</head>
-
-<body>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12" align="center">
-            <img src="img/logo.png" alt="Логотип Миритек" title="Логотип Миритек"
-                 height="200">
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
