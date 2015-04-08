@@ -61,7 +61,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12" align="center">
-            <img src="img/miritec_logo.png" alt="Логотип Миритек" title="Логотип Миритек"
+            <img src="img/logo.png" alt="Логотип Миритек" title="Логотип Миритек"
                  height="200">
         </div>
     </div>
