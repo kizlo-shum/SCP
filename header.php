@@ -11,7 +11,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12" align="center">
-            <img src="img/logo.png" alt="Логотип" title="Логотип"
+            <img src="/img/logo.png" alt="Логотип" title="Логотип"
                  height="200">
         </div>
     </div>

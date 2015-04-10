@@ -68,14 +68,15 @@ if (isset($_SESSION['userId'])) {
             echo '<table class="table table-striped"><tr><th>Number</th><th>Name</th><th>Homework</th></tr>';
             foreach ($students as $student) {
                 $i++;
-                print "<tr><td>" . $i . "</td>";
-                print "<td>" . $student["varFirstName"] . " " . $student["varSurname"] . "</td>";
+                print "<tr><td>" . $i . "</td><td>";
+                print '<a href="/student.php' . "/?id=" . $student["intId"]  .'">';
+                print $student["varFirstName"] . " " . $student["varSurname"] . "</a></td>";
                 print "<td>";
                 foreach($homeworks as $homework) {
                     if ($student["intId"] == $homework["intStudentId"]) {
                         print '<a href="homeworks/' . $homework["varFileName"] . '">';
                         print $homework["varFileName"] . "</a><br />";
-                }
+                    }
                 }
                 print "</td></tr>";
             }
