@@ -1,5 +1,5 @@
 <?php
-$title = "Profile";
+$title = "Your profile";
 include "header.php";
 
 session_start();
@@ -37,8 +37,7 @@ if (isset($_SESSION['userId'])) {
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <h1>Your profile
-            <small><a href="/logout.php">logout</a></small>
+        <h1><small><a href="/logout.php">Log out</a></small>
         </h1>
         <div class="row">
             <div class="col-md-6">
@@ -64,20 +63,25 @@ if (isset($_SESSION['userId'])) {
                 print "</td></tr></table>";
             }
         } else {
-            $i = 0;
+            $j = 0;
             echo '<table class="table table-striped"><tr><th>Number</th><th>Name</th><th>Homework</th></tr>';
             foreach ($students as $student) {
-                $i++;
-                print "<tr><td>" . $i . "</td><td>";
+                $j++;
+                print "<tr><td>" . $j . "</td><td>";
                 print '<a href="/student.php' . "?id=" . $student["intId"] . '">';
                 print $student["varFirstName"] . " " . $student["varSurname"] . "</a></td>";
                 print "<td>";
+                $k = 0;
                 foreach ($homeworks as $homework) {
+
                     if ($student["intId"] == $homework["intStudentId"]) {
-                        print '<a href="homeworks/' . $homework["varFileName"] . '">';
-                        print $homework["varFileName"] . "</a><br />";
+                        $k++;
+                        //print '<a href="homeworks/' . $homework["varFileName"] . '">';
+                        //print $homework["varFileName"] . "</a><br />";
                     }
+
                 }
+                print '<span class="badge">' . $k . "</span>";
                 print "</td></tr>";
             }
             print "</tr></table>";

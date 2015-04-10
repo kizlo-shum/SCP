@@ -1,14 +1,15 @@
 <?php
-$title = "Student";
+$title = "Student's profile";
 include "header.php";
 
 session_start();
-if ($_SESSION['isTeacher'] AND isset($_GET["id"])) {
-    $id = $_GET["id"];
-    $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-    $sth = $dbh->prepare("SELECT intId, varFirstName, varSurname, varAvatar, varEmail FROM user WHERE intId = :id");
-    $sth->execute([':id' => $id]);
-    $result = $sth->fetch(PDO::FETCH_ASSOC);
+$id = $_GET["id"];
+$dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
+$sth = $dbh->prepare("SELECT intId, varFirstName, varSurname, varAvatar, varEmail FROM user WHERE intId = :id");
+$sth->execute([':id' => $id]);
+$result = $sth->fetch(PDO::FETCH_ASSOC);
+
+if ($_SESSION['isTeacher'] AND isset($_GET["id"]) AND !empty($result)) {
     $sth = $dbh->prepare("SELECT varFileName, intStudentId FROM homework WHERE intStudentId = :id");
     $sth->execute([':id' => $id]);
     $homeworks = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -21,7 +22,7 @@ if ($_SESSION['isTeacher'] AND isset($_GET["id"])) {
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <h1>Student's profile
+        <h1>
             <small><a href="/profile.php">Return</a></small>
         </h1>
         <div class="row">
@@ -32,8 +33,9 @@ if ($_SESSION['isTeacher'] AND isset($_GET["id"])) {
                 <?php
                 print "<b>Name:</b> " . $result["varFirstName"] . " " . $result["varSurname"] . "<br />";
                 print $result["varEmail"] . "<br /><br /><b>Homework:</b><br />";
+                $i = 0;
                 foreach ($homeworks as $homework) {
-
+                    $i++;
                     print '<a href="homeworks/' . $homework["varFileName"] . '">';
                     print $homework["varFileName"] . "</a><br />";
                 }
