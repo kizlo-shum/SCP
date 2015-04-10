@@ -1,5 +1,5 @@
 <?php
-$title="Login";
+$title = "Login";
 include "header.php";
 session_start();
 $text = "";

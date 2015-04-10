@@ -1,5 +1,5 @@
 <?php
-$title="Registration";
+$title = "Registration";
 include "header.php";
 $text = "";
 
@@ -46,71 +46,71 @@ if (!empty($_POST)) {
     }
 }
 ?>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="centered-text">
-                <h3>Registration form<br/>
-                    <small>Already have an account? Please <a href="/login.php">login.</a></small>
-                </h3>
-                <?PHP if ($text != "") {
-                    print '<div class="alert alert-danger" role="alert">';
-                    print $text;
-                    print '</div>';
-                }?>
-            </div>
-            <form name="loginForm" enctype="multipart/form-data" method="POST" action="registration.php">
-
-                <div class="form-group">
-
-                    <label for="firstName">First name</label>
-                    <input type="text" class="form-control" placeholder="Enter your first name" id="firstName"
-                           name="firstName" autocomplete="off" value="<?php if (isset($firstName)) {
-                        print("$firstName");
-                    } ?>">
-                </div>
-                <div class="form-group">
-
-                    <label for="secondName">Second name</label>
-                    <input type="text" class="form-control" placeholder="Enter your second name" id="secondName"
-                           name="secondName" autocomplete="off" value="<?php if (isset($secondName)) {
-                        print("$secondName");
-                    } ?>">
-                </div>
-                <div class="form-group">
-
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" placeholder="Enter your e-mail" id="email" name="email"
-                           autocomplete="off" value="<?php if (isset($email)) {
-                        print("$email");
-                    } ?>">
-                </div>
-                <div class="form-group">
-                    <label for="inputAvatar">Avatar</label>
-                    <input type="file" accept="image/jpeg,image/png" name="inputAvatar" id="inputAvatar"
-                           value="<?php if (isset($avatarName)) {
-                               print("$avatarName");
-                           } ?>">
-                </div>
-                <div class="form-group">
-                    <label for="password1">Password</label>
-                    <input type="password" class="form-control" placeholder="Choose password" id="password1"
-                           name="password1">
-                </div>
-                <div class="form-group">
-                    <label for="password2">Password verification</label>
-                    <input type="password" class="form-control" placeholder="Re-enter password" id="password2"
-                           name="password2">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default pull-right" id="submitLogin"
-                            name="submitLogin">Sign up
-                    </button>
-                </div>
-            </form>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="centered-text">
+            <h3>Registration form<br/>
+                <small>Already have an account? Please <a href="/login.php">login.</a></small>
+            </h3>
+            <?PHP if ($text != "") {
+                print '<div class="alert alert-danger" role="alert">';
+                print $text;
+                print '</div>';
+            }?>
         </div>
-        <div class="col-md-4"></div>
+        <form name="loginForm" enctype="multipart/form-data" method="POST" action="registration.php">
+
+            <div class="form-group">
+
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" placeholder="Enter your first name" id="firstName"
+                       name="firstName" autocomplete="off" value="<?php if (isset($firstName)) {
+                    print("$firstName");
+                } ?>">
+            </div>
+            <div class="form-group">
+
+                <label for="secondName">Second name</label>
+                <input type="text" class="form-control" placeholder="Enter your second name" id="secondName"
+                       name="secondName" autocomplete="off" value="<?php if (isset($secondName)) {
+                    print("$secondName");
+                } ?>">
+            </div>
+            <div class="form-group">
+
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" placeholder="Enter your e-mail" id="email" name="email"
+                       autocomplete="off" value="<?php if (isset($email)) {
+                    print("$email");
+                } ?>">
+            </div>
+            <div class="form-group">
+                <label for="inputAvatar">Avatar</label>
+                <input type="file" accept="image/jpeg,image/png" name="inputAvatar" id="inputAvatar"
+                       value="<?php if (isset($avatarName)) {
+                           print("$avatarName");
+                       } ?>">
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input type="password" class="form-control" placeholder="Choose password" id="password1"
+                       name="password1">
+            </div>
+            <div class="form-group">
+                <label for="password2">Password verification</label>
+                <input type="password" class="form-control" placeholder="Re-enter password" id="password2"
+                       name="password2">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default pull-right" id="submitLogin"
+                        name="submitLogin">Sign up
+                </button>
+            </div>
+        </form>
     </div>
+    <div class="col-md-4"></div>
+</div>
 </div>
 </body>
 </html>

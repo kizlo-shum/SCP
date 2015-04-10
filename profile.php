@@ -17,8 +17,7 @@ if (isset($_SESSION['userId'])) {
         $sth = $dbh->prepare("SELECT varFileName, intMark FROM homework WHERE homework.intStudentId = :userId");
         $sth->execute([':userId' => $userId]);
         $homeworks = $sth->fetchAll(PDO::FETCH_ASSOC);
-    }
-    else {
+    } else {
         $sth = $dbh->prepare("SELECT varFirstName, varSurname, intId FROM user WHERE isTeacher = :isTeacher");
         $sth->execute([':isTeacher' => $isTeacher]);
         $students = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +37,9 @@ if (isset($_SESSION['userId'])) {
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <h1>Your profile<small> <a href = "/logout.php">logout</a></small></h1>
+        <h1>Your profile
+            <small><a href="/logout.php">logout</a></small>
+        </h1>
         <div class="row">
             <div class="col-md-6">
                 <img width="200" src="/avatars/<?= $user["varAvatar"] ?>">
@@ -48,7 +49,7 @@ if (isset($_SESSION['userId'])) {
                 <?= $user["varEmail"] ?><br/>
             </div>
         </div>
-        <br />
+        <br/>
         <?php
         if (!$user["isTeacher"]) {
             $i = 0;
@@ -62,17 +63,16 @@ if (isset($_SESSION['userId'])) {
                 }
                 print "</td></tr></table>";
             }
-        }
-        else {
+        } else {
             $i = 0;
             echo '<table class="table table-striped"><tr><th>Number</th><th>Name</th><th>Homework</th></tr>';
             foreach ($students as $student) {
                 $i++;
                 print "<tr><td>" . $i . "</td><td>";
-                print '<a href="/student.php' . "?id=" . $student["intId"]  .'">';
+                print '<a href="/student.php' . "?id=" . $student["intId"] . '">';
                 print $student["varFirstName"] . " " . $student["varSurname"] . "</a></td>";
                 print "<td>";
-                foreach($homeworks as $homework) {
+                foreach ($homeworks as $homework) {
                     if ($student["intId"] == $homework["intStudentId"]) {
                         print '<a href="homeworks/' . $homework["varFileName"] . '">';
                         print $homework["varFileName"] . "</a><br />";

@@ -4,7 +4,7 @@ include "header.php";
 
 session_start();
 if ($_SESSION['isTeacher'] AND isset($_GET["id"])) {
-    $id =  $_GET["id"];
+    $id = $_GET["id"];
     $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
     $sth = $dbh->prepare("SELECT intId, varFirstName, varSurname, varAvatar, varEmail FROM user WHERE intId = :id");
     $sth->execute([':id' => $id]);
@@ -12,8 +12,7 @@ if ($_SESSION['isTeacher'] AND isset($_GET["id"])) {
     $sth = $dbh->prepare("SELECT varFileName, intStudentId FROM homework WHERE intStudentId = :id");
     $sth->execute([':id' => $id]);
     $homeworks = $sth->fetchAll(PDO::FETCH_ASSOC);
-}
-else {
+} else {
     header('Location: /profile.php', true, 303);
     exit;
 }
@@ -22,7 +21,9 @@ else {
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <h1>Student's profile<small> <a href = "/profile.php">Return</a></small></h1>
+        <h1>Student's profile
+            <small><a href="/profile.php">Return</a></small>
+        </h1>
         <div class="row">
             <div class="col-md-6">
                 <img width="200" src="/avatars/<?= $result["varAvatar"] ?>">
