@@ -13,13 +13,19 @@ if (isset($_SESSION['userId'])) {
     $sth->execute([':userId' => $userId]);
     $user = $sth->fetch(PDO::FETCH_ASSOC);
 
-    $sth = $dbh->prepare("SELECT varFileName, intMark FROM homework WHERE homework.intStudentId = :userId");
-    $sth->execute([':userId' => $userId]);
-    $homeworks = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-    $sth = $dbh->prepare("SELECT varFirstName, varSurname FROM user WHERE isTeacher = :isTeacher");
-    $sth->execute([':isTeacher' => $isTeacher]);
-    $students = $sth->fetchAll(PDO::FETCH_ASSOC);
+    if (!$user["isTeacher"]) {
+        $sth = $dbh->prepare("SELECT varFileName, intMark FROM homework WHERE homework.intStudentId = :userId");
+        $sth->execute([':userId' => $userId]);
+        $homeworks = $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+    else {
+        $sth = $dbh->prepare("SELECT varFirstName, varSurname, intId FROM user WHERE isTeacher = :isTeacher");
+        $sth->execute([':isTeacher' => $isTeacher]);
+        $students = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $sth = $dbh->prepare("SELECT varFileName, intStudentId FROM homework");
+        $sth->execute();
+        $homeworks = $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
 } else {
@@ -47,24 +53,31 @@ if (isset($_SESSION['userId'])) {
         if (!$user["isTeacher"]) {
             $i = 0;
             if (!empty($homeworks)) {
-                echo '<table class="table table-striped"><tr><th>Number</th><th>Link</th><th>Mark</th></tr>';
+                echo '<table class="table table-striped"><tr><th>Number</th><th>Link</th></tr>';
                 foreach ($homeworks as $homework) {
                     $i++;
                     print "<tr><td>" . "Homework " . $i . "</td>";
                     print "<td>" . '<a href="homeworks/' . $homework["varFileName"] . '">';
-                    print $homework["varFileName"] . "</a>" . "</td><td>" . $homework["intMark"];
+                    print $homework["varFileName"] . "</a>";
                 }
                 print "</td></tr></table>";
             }
         }
         else {
             $i = 0;
-            echo '<table class="table table-striped"><tr><th>Number</th><th>Name</th></tr>';
+            echo '<table class="table table-striped"><tr><th>Number</th><th>Name</th><th>Homework</th></tr>';
             foreach ($students as $student) {
                 $i++;
                 print "<tr><td>" . $i . "</td>";
-                print "<td>" . $student["varFirstName"] . " " . $student["varSurname"] . "</td></tr>";
-
+                print "<td>" . $student["varFirstName"] . " " . $student["varSurname"] . "</td>";
+                print "<td>";
+                foreach($homeworks as $homework) {
+                    if ($student["intId"] == $homework["intStudentId"]) {
+                        print '<a href="homeworks/' . $homework["varFileName"] . '">';
+                        print $homework["varFileName"] . "</a><br />";
+                }
+                }
+                print "</td></tr>";
             }
             print "</tr></table>";
         }
