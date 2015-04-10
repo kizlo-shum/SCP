@@ -7,10 +7,11 @@ if (!empty($_POST)) {
     $email = $_POST['email'];
     $passwordHash = md5($_POST['password']);
     $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
-    $sth = $dbh->prepare("SELECT intId, varPasswordHash FROM user WHERE varEmail = :email");
+    $sth = $dbh->prepare("SELECT intId, isTeacher, varPasswordHash FROM user WHERE varEmail = :email");
     $sth->execute([':email' => $email]);
     $result = $sth->fetch(PDO::FETCH_ASSOC);
     $_SESSION["userId"] = $result["intId"];
+    $_SESSION["isTeacher"] = $result["isTeacher"];
     if ($result) {
         if ($result["varPasswordHash"] === $passwordHash) {
             header('Location: /profile.php', true, 303);
