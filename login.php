@@ -27,42 +27,42 @@ if (!empty($_POST)) {
 
 ?>
 
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="centered-text">
-                <h3>Login form<br/>
-                    <small>Don't have an account yet? Please <a href="/registration.php">create</a> one.</small>
-                </h3>
-                <?PHP if ($text != "") {
-                    print '<div class="alert alert-danger" role="alert">';
-                    print $text;
-                    print '</div>';
-                }?>
-            </div>
-            <form name="loginForm" method="POST" action="login.php">
-
-                <div class="form-group">
-
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" placeholder="Enter your email" id="email"
-                           name="email">
-                </div>
-                <div class="form-group">
-
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter your password" id="password"
-                           name="password">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default pull-left" id="submitLogin"
-                            name="submitLogin">Sign up
-                    </button>
-                </div>
-            </form>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="centered-text">
+            <h3>Login form<br/>
+                <small>Don't have an account yet? Please <a href="/registration.php">create</a> one.</small>
+            </h3>
+            <?PHP if ($text != "") {
+                print '<div class="alert alert-danger" role="alert">';
+                print $text;
+                print '</div>';
+            }?>
         </div>
-        <div class="col-md-4"></div>
+        <form name="loginForm" method="POST" action="login.php">
+
+            <div class="form-group">
+
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" placeholder="Enter your email" id="email"
+                       name="email">
+            </div>
+            <div class="form-group">
+
+                <label for="password">Password</label>
+                <input type="password" class="form-control" placeholder="Enter your password" id="password"
+                       name="password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default pull-left" id="submitLogin"
+                        name="submitLogin">Sign up
+                </button>
+            </div>
+        </form>
     </div>
+    <div class="col-md-4"></div>
+</div>
 </div>
 </body>
 </html>

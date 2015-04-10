@@ -38,14 +38,14 @@ if (isset($_SESSION['userId'])) {
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
+        <h1>Your profile<small> <a href = "/logout.php">logout</a></small></h1>
         <div class="row">
             <div class="col-md-6">
                 <img width="200" src="/avatars/<?= $user["varAvatar"] ?>">
             </div>
             <div class="col-md-6">
                 <?= $user["varFirstName"] . " " . $user["varSurname"] ?><br/>
-                <b>E-mail:</b> <?= $user["varEmail"] ?><br/>
-                <a href="/logout.php">Log out</a>
+                <?= $user["varEmail"] ?><br/>
             </div>
         </div>
         <br />
@@ -69,7 +69,7 @@ if (isset($_SESSION['userId'])) {
             foreach ($students as $student) {
                 $i++;
                 print "<tr><td>" . $i . "</td><td>";
-                print '<a href="/student.php' . "/?id=" . $student["intId"]  .'">';
+                print '<a href="/student.php' . "?id=" . $student["intId"]  .'">';
                 print $student["varFirstName"] . " " . $student["varSurname"] . "</a></td>";
                 print "<td>";
                 foreach($homeworks as $homework) {
