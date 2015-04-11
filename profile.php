@@ -55,9 +55,10 @@ if (isset($_SESSION['userId'])) {
                 echo '<table class="table table-striped"><tr><th>Number</th><th>Link</th></tr>';
                 foreach ($homeworks as $homework) {
                     $i++;
-                    print "<tr><td>" . "Homework " . $i . "</td>";
-                    print "<td>" . '<a href="homeworks/' . $homework["varFileName"] . '">';
-                    print $homework["varFileName"] . "</a>";
+                    print "<tr><td>" . "Homework " . $i . "</td><td>";
+                    print $homework["varFileName"];
+                    print " " . '<a href="homeworks/' . $homework["varFileName"] . '">';
+                    print '<span class="glyphicon glyphicon-save">' . "</a>";
                 }
                 print "</td></tr></table>";
             }
