@@ -22,9 +22,8 @@ if ($_SESSION['isTeacher'] AND isset($_GET["id"]) AND !empty($result)) {
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <h1>
-            <small><a href="/profile.php">Return</a></small>
-        </h1>
+        <h4><a href="/profile.php">Return</a></small></h4>
+
         <div class="row">
             <div class="col-md-6">
                 <img width="200" src="/avatars/<?= $result["varAvatar"] ?>">

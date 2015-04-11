@@ -30,9 +30,7 @@ if (!empty($_POST)) {
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <div class="centered-text">
-            <h3>
-                <small>Don't have an account yet? Please <a href="/registration.php">create</a> one.</small>
-            </h3>
+            <h4>Don't have an account yet? Please <a href="/registration.php">create</a> one.</h4>
             <?PHP if ($text != "") {
                 print '<div class="alert alert-danger" role="alert">';
                 print $text;
