@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2015 at 11:57 AM
+-- Generation Time: Apr 11, 2015 at 01:51 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.7
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`intId`),
   KEY `intId` (`intId`),
   KEY `intId_2` (`intId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `user`
@@ -46,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`intId`, `isTeacher`, `varFirstName`, `varSurname`, `varEmail`, `varAvatar`, `varPasswordHash`) VALUES
 (1, 1, 'Ярослав', 'Рыбяк', 'yaroslav.rybyak@ya.ru', 'bae8f4661870f5229b3de9ad7df94714.png', '60d0b59714dcfc8918e9fafea1ac3815'),
 (2, 0, 'Иван', 'Дубинин', 'ivan@dub.com', '27bd93099b6ed00f11e2807933a6a949.png', '60d0b59714dcfc8918e9fafea1ac3815'),
-(3, 0, 'Анастасия', 'Кавецкая', 'myownjam@gmail.com', '47877f39e773b14a41acaa8def36da4d.png', '1b3fad5b6d6dcefcb4733bd10cdf84bc');
+(3, 0, 'Анастасия', 'Кавецкая', 'myownjam@gmail.com', '47877f39e773b14a41acaa8def36da4d.png', '1b3fad5b6d6dcefcb4733bd10cdf84bc'),
+(4, 0, 'Король', 'Джулиан', 'king@africa.com', 'dc415a7f529558268ab2f677973f60c0.jpg', '1b3fad5b6d6dcefcb4733bd10cdf84bc');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

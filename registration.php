@@ -4,13 +4,11 @@ include "header.php";
 $text = "";
 
 if (!empty($_POST)) {
-    $firstName = strip_tags($_POST['firstName']);
-    $secondName = strip_tags($_POST['secondName']);
-    $email = strip_tags($_POST['email']);
-    $password1 = $_POST['password1'];
-    $password2 = $_POST['password2'];
-    $avatarName = $_FILES['inputAvatar']['name'];
-
+    foreach($_POST as $key => $value)
+    {
+        $$key = $value;
+    }
+    $avatarName = $_FILES['avatarName']['name'];
     if ($password1 != $password2) {
         $text = '<p class="text-danger">Passwords doesn\'t match.</p>';
     } else if (strlen($password1) < 8) {
@@ -25,9 +23,9 @@ if (!empty($_POST)) {
         $text = '<p class="text-danger">Please choose avatar.</p>';
     } else {
         session_start();
-        $ext = pathinfo($_FILES['inputAvatar']['name'], PATHINFO_EXTENSION);
-        $avatarName = md5(uniqid($_FILES["inputAvatar"]["name"], true)) . "." . $ext;
-        $moveResult = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], 'avatars/' . $avatarName);
+        $ext = pathinfo($_FILES['avatarName']['name'], PATHINFO_EXTENSION);
+        $avatarName = md5(uniqid($_FILES["avatarName"]["name"], true)) . "." . $ext;
+        $moveResult = move_uploaded_file($_FILES['avatarName']['tmp_name'], 'avatars/' . $avatarName);
         $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
         $dbh->query("SET NAMES 'utf8';");
         $sql = "INSERT INTO registration.user(varFirstName, varSurname, varEmail, varAvatar, varPasswordHash)
@@ -63,32 +61,23 @@ if (!empty($_POST)) {
 
                 <label for="firstName">First name</label>
                 <input type="text" class="form-control" placeholder="Enter your first name" id="firstName"
-                       name="firstName" autocomplete="off" value="<?php if (isset($firstName)) {
-                    print("$firstName");
-                } ?>">
+                       name="firstName" autocomplete="off" value="<?=(isset($firstName))?$firstName:''?>">
             </div>
             <div class="form-group">
 
                 <label for="secondName">Second name</label>
                 <input type="text" class="form-control" placeholder="Enter your second name" id="secondName"
-                       name="secondName" autocomplete="off" value="<?php if (isset($secondName)) {
-                    print("$secondName");
-                } ?>">
+                       name="secondName" autocomplete="off" value="<?=(isset($secondName))?$secondName:''?>">
             </div>
             <div class="form-group">
 
                 <label for="email">E-mail</label>
                 <input type="email" class="form-control" placeholder="Enter your e-mail" id="email" name="email"
-                       autocomplete="off" value="<?php if (isset($email)) {
-                    print("$email");
-                } ?>">
+                       autocomplete="off" value="<?=(isset($email))?$email:''?>">
             </div>
             <div class="form-group">
-                <label for="inputAvatar">Avatar</label>
-                <input type="file" accept="image/jpeg,image/png" name="inputAvatar" id="inputAvatar"
-                       value="<?php if (isset($avatarName)) {
-                           print("$avatarName");
-                       } ?>">
+                <label for="avatarName">Avatar</label>
+                <input type="file" accept="image/jpeg,image/png" name="avatarName" id="avatarName">
             </div>
             <div class="form-group">
                 <label for="password1">Password</label>
