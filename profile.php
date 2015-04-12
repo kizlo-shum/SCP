@@ -57,8 +57,8 @@ if (isset($_SESSION['userId'])) {
                     $i++;
                     print "<tr><td>" . "Homework " . $i . "</td><td>";
                     print $homework["varFileName"];
-                    print " " . '<a href="homeworks/' . $homework["varFileName"] . '">';
-                    print '<span class="glyphicon glyphicon-save">' . "</a>";
+                    print " " . '<a href="homeworks/' . $homework["varFileName"] . '" title="Download">';
+                    print '<span class="glyphicon glyphicon-download">' . "</a>";
                 }
                 print "</td></tr></table>";
             }

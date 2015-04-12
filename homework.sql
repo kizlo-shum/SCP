@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2015 at 07:07 PM
+-- Generation Time: Apr 12, 2015 at 07:47 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.7
 
@@ -36,45 +36,19 @@ CREATE TABLE IF NOT EXISTS `homework` (
   PRIMARY KEY (`intId`),
   UNIQUE KEY `intId` (`intId`),
   KEY `intStudentId` (`intStudentId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `homework`
 --
 
 INSERT INTO `homework` (`intId`, `intTeacherId`, `varFilename`, `dateCreated`, `intMark`, `intStudentId`) VALUES
-(1, 1, 'homework.doc', '2015-04-08 18:48:48', 5, 2),
-(2, 1, 'homework2.doc', '2015-04-08 18:49:17', 4, 4),
-(3, 1, 'table.xls', '2015-04-08 18:49:46', 5, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `intId` int(11) NOT NULL AUTO_INCREMENT,
-  `isTeacher` tinyint(4) NOT NULL,
-  `varFirstName` varchar(20) DEFAULT NULL,
-  `varSurname` varchar(30) DEFAULT NULL,
-  `varEmail` varchar(30) DEFAULT NULL,
-  `varAvatar` varchar(60) DEFAULT NULL,
-  `varPasswordHash` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`intId`),
-  KEY `intId` (`intId`),
-  KEY `intId_2` (`intId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`intId`, `isTeacher`, `varFirstName`, `varSurname`, `varEmail`, `varAvatar`, `varPasswordHash`) VALUES
-(1, 1, 'Ярослав', 'Рыбяк', 'yaroslav.rybyak@ya.ru', 'bae8f4661870f5229b3de9ad7df94714.png', '60d0b59714dcfc8918e9fafea1ac3815'),
-(2, 0, 'Иван', 'Дубинин', 'ivan@dub.com', '27bd93099b6ed00f11e2807933a6a949.png', '60d0b59714dcfc8918e9fafea1ac3815'),
-(3, 0, 'Анастасия', 'Кавецкая', 'myownjam@gmail.com', '47877f39e773b14a41acaa8def36da4d.png', '1b3fad5b6d6dcefcb4733bd10cdf84bc'),
-(4, 0, 'Король', 'Джулиан', 'king@africa.com', 'dc415a7f529558268ab2f677973f60c0.jpg', '1b3fad5b6d6dcefcb4733bd10cdf84bc');
+(1, 1, 'homework_33c00.doc', '2015-04-12 16:43:09', 0, 2),
+(2, 1, 'homework_826c0.doc', '2015-04-12 16:43:16', 0, 2),
+(3, 1, 'homework_d0dd4.xls', '2015-04-12 16:43:27', 0, 2),
+(4, 1, 'homework_a36a2.doc', '2015-04-12 16:44:31', 0, 3),
+(5, 1, 'homework_4ad83.xls', '2015-04-12 16:44:37', 0, 4),
+(6, 1, 'homework_98bb5.xls', '2015-04-12 16:44:40', 0, 4);
 
 --
 -- Constraints for dumped tables

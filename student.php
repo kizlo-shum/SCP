@@ -41,13 +41,43 @@ if ($_SESSION['isTeacher'] AND isset($_GET["delete"])) {
                 foreach ($homeworks as $homework) {
                     print $homework["varFileName"];
                     print " " . '<a href="homeworks/' . $homework["varFileName"] . '" title="Download">';
-                    print '<span class="glyphicon glyphicon-save">';
+                    print '<span class="glyphicon glyphicon-download">';
                     print "</a>";
                     print " " . '<a href="?id=' . $id . '&delete=' . $homework["intId"] . '" title="Delete">';
                     print '<span class="glyphicon glyphicon-trash">';
                     print "</a><br />";
                 }
+                if ($_SESSION['isTeacher'] AND !empty($_POST)) {
+                    $ext = pathinfo($_FILES['inputFile']['name'], PATHINFO_EXTENSION);
+                    $homeworkName = "homework_" . substr(md5(uniqid($_FILES["inputFile"]["name"], true)), 0, 5);
+                    $homeworkName .= "." . $ext;
+                    $moveResult = move_uploaded_file($_FILES['inputFile']['tmp_name'], 'homeworks/' . $homeworkName);
+                    $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
+                    $dbh->query("SET NAMES 'utf8';");
+                    $sql = "INSERT INTO registration.homework(intTeacherId, varFilename, intMark, intStudentId)
+                            VALUES(:intTeacherId, :varFilename, :intMark, :intStudentId)";
+                    $sth = $dbh->prepare($sql);
+                    $sth->execute([
+                        ':intTeacherId' => $_SESSION["userId"],
+                        ':varFilename' => $homeworkName,
+                        ':intMark' => 0,
+                        ':intStudentId' => $id
+                    ]);
+                    header('Location: /student.php?id='.$id, true, 303);
+                }
                 ?>
+                <br />
+                <label for="uploadForm">Add homework</label>
+                <form name="uploadForm" enctype="multipart/form-data" method="POST" action="student.php?id=<?=$id?>">
+                    <div class="form-group">
+                        <input type="file" name="inputFile" id="inputFile">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" id="submitLogin"
+                                name="uploadButton">Add homework
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
