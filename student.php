@@ -1,7 +1,6 @@
 <?php
 $title = "Student's profile";
 include "header.php";
-
 session_start();
 $id = $_GET["id"];
 $dbh = new PDO('mysql:host=localhost; dbname=registration; charset=UTF8', 'root', '6710omne8864');
@@ -28,7 +27,6 @@ if ($_SESSION['isTeacher'] AND isset($_GET["delete"])) {
     </div>
     <div class="col-md-4">
         <h4><a href="/profile.php">Return</a></small></h4>
-
         <div class="row">
             <div class="col-md-6">
                 <img width="200" src="/avatars/<?= $result["varAvatar"] ?>">

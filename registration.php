@@ -1,8 +1,6 @@
 <?php
 $title = "Registration";
 include "header.php";
-$text = "";
-
 if (!empty($_POST)) {
     foreach($_POST as $key => $value)
     {
@@ -49,11 +47,7 @@ if (!empty($_POST)) {
     <div class="col-md-4">
         <div class="centered-text">
             <h4>Already have an account? Please <a href="/login.php">login.</a></h4>
-            <?PHP if ($text != "") {
-                print '<div class="alert alert-danger" role="alert">';
-                print $text;
-                print '</div>';
-            }?>
+            <?=(isset($text))?'<div class="alert alert-danger" role="alert">'.$text.'</div>':''?>
         </div>
         <form name="loginForm" enctype="multipart/form-data" method="POST" action="registration.php">
 

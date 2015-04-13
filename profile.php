@@ -1,7 +1,6 @@
 <?php
 $title = "Your profile";
 include "header.php";
-
 session_start();
 if (isset($_SESSION['userId'])) {
     $info = array();
@@ -84,7 +83,9 @@ if (isset($_SESSION['userId'])) {
             }
             print "</tr></table>";
         }
+        print ($user["isTeacher"])?'<a href="add.php">Add student</a>':"";
         ?>
+
     </div>
     <div class="col-md-4"></div>
 </div>

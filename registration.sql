@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2015 at 07:07 PM
+-- Generation Time: Apr 13, 2015 at 01:13 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.7
 
@@ -36,16 +36,19 @@ CREATE TABLE IF NOT EXISTS `homework` (
   PRIMARY KEY (`intId`),
   UNIQUE KEY `intId` (`intId`),
   KEY `intStudentId` (`intStudentId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `homework`
 --
 
 INSERT INTO `homework` (`intId`, `intTeacherId`, `varFilename`, `dateCreated`, `intMark`, `intStudentId`) VALUES
-(1, 1, 'homework.doc', '2015-04-08 18:48:48', 5, 2),
-(2, 1, 'homework2.doc', '2015-04-08 18:49:17', 4, 4),
-(3, 1, 'table.xls', '2015-04-08 18:49:46', 5, 2);
+(1, 1, 'homework_3d0d1.doc', '2015-04-13 10:11:22', 0, 2),
+(2, 1, 'homework_6d377.doc', '2015-04-13 10:11:25', 0, 2),
+(3, 1, 'homework_be70a.xls', '2015-04-13 10:11:34', 0, 3),
+(4, 1, 'homework_ff6a0.xls', '2015-04-13 10:11:36', 0, 3),
+(5, 1, 'homework_68ec1.doc', '2015-04-13 10:11:40', 0, 3),
+(6, 1, 'homework_b3d6a.xls', '2015-04-13 10:11:46', 0, 4);
 
 -- --------------------------------------------------------
 
