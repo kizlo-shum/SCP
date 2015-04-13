@@ -31,11 +31,7 @@ if (!empty($_POST)) {
     <div class="col-md-4">
         <div class="centered-text">
             <h4>Don't have an account yet? Please <a href="/registration.php">create</a> one.</h4>
-            <?PHP if ($text != "") {
-                print '<div class="alert alert-danger" role="alert">';
-                print $text;
-                print '</div>';
-            }?>
+            <?=($text != "")?'<div class="alert alert-danger" role="alert">'.$text.'</div>':""?>
         </div>
         <form name="loginForm" method="POST" action="login.php">
 
