@@ -27,6 +27,7 @@ if ($_SESSION['isTeacher'] AND isset($_GET["delete"])) {
     </div>
     <div class="col-md-4">
         <h4><a href="/profile.php">Return</a></small></h4>
+
         <div class="row">
             <div class="col-md-6">
                 <img width="200" src="/avatars/<?= $result["varAvatar"] ?>">
@@ -61,12 +62,13 @@ if ($_SESSION['isTeacher'] AND isset($_GET["delete"])) {
                         ':intMark' => 0,
                         ':intStudentId' => $id
                     ]);
-                    header('Location: /student.php?id='.$id, true, 303);
+                    header('Location: /student.php?id=' . $id, true, 303);
                 }
                 ?>
-                <br />
+                <br/>
                 <label for="uploadForm">Add homework</label>
-                <form name="uploadForm" enctype="multipart/form-data" method="POST" action="student.php?id=<?=$id?>">
+
+                <form name="uploadForm" enctype="multipart/form-data" method="POST" action="student.php?id=<?= $id ?>">
                     <div class="form-group">
                         <input type="file" name="inputFile" id="inputFile">
                     </div>

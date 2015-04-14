@@ -2,8 +2,7 @@
 $title = "Registration";
 include "header.php";
 if (!empty($_POST)) {
-    foreach($_POST as $key => $value)
-    {
+    foreach ($_POST as $key => $value) {
         $$key = $value;
     }
     $avatarName = $_FILES['avatarName']['name'];
@@ -47,7 +46,7 @@ if (!empty($_POST)) {
     <div class="col-md-4">
         <div class="centered-text">
             <h4>Already have an account? Please <a href="/login.php">login.</a></h4>
-            <?=(isset($text))?'<div class="alert alert-danger" role="alert">'.$text.'</div>':''?>
+            <?= (isset($text)) ? '<div class="alert alert-danger" role="alert">' . $text . '</div>' : '' ?>
         </div>
         <form name="loginForm" enctype="multipart/form-data" method="POST" action="registration.php">
 
@@ -55,19 +54,19 @@ if (!empty($_POST)) {
 
                 <label for="firstName">First name</label>
                 <input type="text" class="form-control" placeholder="Enter your first name" id="firstName"
-                       name="firstName" autocomplete="off" value="<?=(isset($firstName))?$firstName:''?>">
+                       name="firstName" autocomplete="off" value="<?= (isset($firstName)) ? $firstName : '' ?>">
             </div>
             <div class="form-group">
 
                 <label for="secondName">Second name</label>
                 <input type="text" class="form-control" placeholder="Enter your second name" id="secondName"
-                       name="secondName" autocomplete="off" value="<?=(isset($secondName))?$secondName:''?>">
+                       name="secondName" autocomplete="off" value="<?= (isset($secondName)) ? $secondName : '' ?>">
             </div>
             <div class="form-group">
 
                 <label for="email">E-mail</label>
                 <input type="email" class="form-control" placeholder="Enter your e-mail" id="email" name="email"
-                       autocomplete="off" value="<?=(isset($email))?$email:''?>">
+                       autocomplete="off" value="<?= (isset($email)) ? $email : '' ?>">
             </div>
             <div class="form-group">
                 <label for="avatarName">Avatar</label>

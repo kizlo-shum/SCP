@@ -37,6 +37,7 @@ if (isset($_SESSION['userId'])) {
     </div>
     <div class="col-md-4">
         <h4><a href="/logout.php">Log out</a></h4>
+
         <div class="row">
             <div class="col-md-6">
                 <img width="200" src="/avatars/<?= $user["varAvatar"] ?>">
@@ -83,7 +84,7 @@ if (isset($_SESSION['userId'])) {
             }
             print "</tr></table>";
         }
-        print ($user["isTeacher"])?'<a href="add.php">Add student</a>':"";
+        print ($user["isTeacher"]) ? '<a href="add.php">Add student</a>' : "";
         ?>
 
     </div>
